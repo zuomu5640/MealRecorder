@@ -1,0 +1,53 @@
+﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model MealRecorder.Pages.Meals.EditModel
+
+@{
+    ViewData["Title"] = "食事記録編集";
+}
+
+<h1>食事記録編集</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Meal.MealId" />
+            <input type="hidden" asp-for="Meal.CreatedAt" />
+            <div class="form-group">
+                <label asp-for="Meal.MealDate" class="control-label"></label>
+                <input asp-for="Meal.MealDate" class="form-control" />
+                <span asp-validation-for="Meal.MealDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Meal.MealType" class="control-label"></label>
+                <select asp-for="Meal.MealType" class="form-control">
+                    <option value="朝食">朝食</option>
+                    <option value="昼食">昼食</option>
+                    <option value="夕食">夕食</option>
+                    <option value="間食">間食</option>
+                </select>
+                <span asp-validation-for="Meal.MealType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Meal.Description" class="control-label"></label>
+                <textarea asp-for="Meal.Description" class="form-control"></textarea>
+                <span asp-validation-for="Meal.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="保存" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">一覧に戻る</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
